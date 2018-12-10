@@ -74,7 +74,7 @@ def main():
     pir = GrovePiezoVibrationSensor(int(sys.argv[1]))
 
     def callback():
-        url = 'http://127.0.0.1:8000/vibration'
+        url = f'http://127.0.0.1:8000/vibration/{sys.argv[1]}'
         urllib.request.urlopen(url)
         print('Detected.')
 
