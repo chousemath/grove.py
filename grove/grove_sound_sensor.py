@@ -64,7 +64,8 @@ def main():
     print('Detecting sound...')
     while True:
         print('Sound value: {0}'.format(sensor.sound))
-        url = 'http://127.0.0.1:8000/sound/' + pin + '?Value=' + sensor.sound
+        url = 'http://127.0.0.1:8000/sound/' + \
+            pin + '?Value=' + str(sensor.sound)
         urllib.request.urlopen(url)
         time.sleep(.4)
 
