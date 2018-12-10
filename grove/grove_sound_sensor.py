@@ -67,7 +67,7 @@ def main():
         url = 'http://127.0.0.1:8000/sound/' + \
             pin + '?Value=' + str(sensor.sound)
         urllib.request.urlopen(url)
-        time.sleep(.1)
+        time.sleep(.3)
 
 
 if __name__ == '__main__':
