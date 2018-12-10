@@ -34,6 +34,7 @@ THE SOFTWARE.
 import math
 import sys
 import time
+import urllib.request
 from grove.adc import ADC
 
 
@@ -48,6 +49,7 @@ class GroveSoundSensor:
         value = self.adc.read(self.channel)
         return value
 
+
 Grove = GroveSoundSensor
 
 
@@ -56,12 +58,16 @@ def main():
         print('Usage: {} adc_channel'.format(sys.argv[0]))
         sys.exit(1)
 
-    sensor = GroveSoundSensor(int(sys.argv[1]))
+    pin = sys.argv[1]
+    sensor = GroveSoundSensor(int(pin))
 
     print('Detecting sound...')
     while True:
         print('Sound value: {0}'.format(sensor.sound))
-        time.sleep(.3)
+        url = 'http://127.0.0.1:8000/sound/' + pin + '?Value=' + sensor.sound
+        urllib.request.urlopen(url)
+        time.sleep(.4)
+
 
 if __name__ == '__main__':
     main()
