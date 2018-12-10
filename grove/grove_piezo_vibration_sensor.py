@@ -32,6 +32,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 '''
 import time
+import requests
 from grove.gpio import GPIO
 
 
@@ -59,6 +60,7 @@ class GrovePiezoVibrationSensor(GPIO):
             if callable(self._on_detect):
                 self._on_detect()
 
+
 Grove = GrovePiezoVibrationSensor
 
 
@@ -72,6 +74,7 @@ def main():
     pir = GrovePiezoVibrationSensor(int(sys.argv[1]))
 
     def callback():
+        requests.get('localhost:8000/vibration')
         print('Detected.')
 
     pir.on_detect = callback
