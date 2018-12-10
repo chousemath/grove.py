@@ -32,7 +32,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 '''
 import time
-import requests
+import urllib.request
 from grove.gpio import GPIO
 
 
@@ -74,7 +74,8 @@ def main():
     pir = GrovePiezoVibrationSensor(int(sys.argv[1]))
 
     def callback():
-        requests.get('localhost:8000/vibration')
+        url = 'http://127.0.0.1:8000/vibration'
+        urllib.request.urlopen(url)
         print('Detected.')
 
     pir.on_detect = callback
