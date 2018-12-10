@@ -33,6 +33,7 @@ THE SOFTWARE.
 '''
 import sys
 import time
+import urllib.request
 from grove.factory import Factory
 
 
@@ -46,9 +47,11 @@ def main():
     print('Detecting temperature...')
     while True:
         print('{} Celsius'.format(sensor.temperature))
-        time.sleep(1)
+        url = 'http://127.0.0.1:8000/temperature/' + \
+            pin + '?Value=' + str(sensor.temperature)
+        urllib.request.urlopen(url)
+        time.sleep(0.4)
 
 
 if __name__ == '__main__':
     main()
-
