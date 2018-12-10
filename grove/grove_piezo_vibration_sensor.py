@@ -71,10 +71,11 @@ def main():
         print('Usage: {} pin'.format(sys.argv[0]))
         sys.exit(1)
 
-    pir = GrovePiezoVibrationSensor(int(sys.argv[1]))
+    pin = sys.argv[1]
+    pir = GrovePiezoVibrationSensor(int(pin))
 
     def callback():
-        url = f'http://127.0.0.1:8000/vibration/{sys.argv[1]}'
+        url = f'http://127.0.0.1:8000/vibration/{pin}'
         urllib.request.urlopen(url)
         print('Detected.')
 
