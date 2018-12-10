@@ -31,7 +31,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 '''
-import sys
 import time
 import urllib.request
 from grove.factory import Factory
@@ -47,8 +46,8 @@ def main():
     print('Detecting temperature...')
     while True:
         print('{} Celsius'.format(sensor.temperature))
-        url = 'http://127.0.0.1:8000/temperature/' + \
-            pin + '?Value=' + str(sensor.temperature)
+        url = 'http://127.0.0.1:8000/temperature/{}?Value={}'.format(
+            pin, sensor.temperature)
         urllib.request.urlopen(url)
         time.sleep(0.4)
 
